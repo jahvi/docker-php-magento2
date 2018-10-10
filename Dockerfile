@@ -1,4 +1,4 @@
-FROM php:7.1
+FROM php:7.0
 
 RUN apt-get update && apt-get install -y \
     unzip \
@@ -21,10 +21,7 @@ RUN docker-php-ext-install xsl
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-install soap
-
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get install -y nodejs
-RUN npm install -g eslint
+RUN docker-php-ext-install bcmath
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
