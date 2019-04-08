@@ -1,5 +1,7 @@
 FROM php:7.1
 
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+
 RUN apt-get update && apt-get install -y \
     unzip \
     libfreetype6-dev \
@@ -12,7 +14,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     build-essential \
     libxml2-dev \
-    git-core
+    git-core \
+    nodejs
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && docker-php-ext-install gd
 RUN docker-php-ext-install intl
