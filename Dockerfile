@@ -28,3 +28,9 @@ RUN docker-php-ext-install bcmath
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+
+RUN curl -o ioncube.tar.gz http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+RUN tar -xvvzf ioncube.tar.gz
+RUN mv ioncube/ioncube_loader_lin_7.1.so `php-config --extension-dir`
+RUN rm -Rf ioncube.tar.gz ioncube
+RUN docker-php-ext-enable ioncube_loader_lin_7.1.so
